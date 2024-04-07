@@ -48,7 +48,17 @@
           <?php endif; ?>
         </tbody>
       </table>
-      <div class="w-75 mt-5">
+      <div id="cekTahun" class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Tahun
+        </button>
+        <ul class="dropdown-menu">
+          <?php  foreach (json_decode($data['jumlahPerBulan']) as $tahun => $value): ?>
+            <li><a class="dropdown-item" href="#cekTahun" data-tahun="<?= $tahun;?>"><?= $tahun;?></a></li>
+          <?php endforeach ?>
+        </ul>
+      </div>
+      <div class="w-75 mt-2">
         <canvas id="myChart"></canvas>
       </div>
 </div>

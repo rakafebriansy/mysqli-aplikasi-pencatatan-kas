@@ -49,9 +49,10 @@ class KasRepository
     {
         $result = $this->connection->query(
             <<<SQL
-                SELECT EXTRACT(MONTH FROM tanggal_pembayaran) AS bulan, SUM(nominal) AS total FROM kas
-                GROUP BY EXTRACT(MONTH FROM tanggal_pembayaran)
-                ORDER BY EXTRACT(MONTH FROM tanggal_pembayaran);
+            SELECT EXTRACT(YEAR FROM tanggal_pembayaran) AS tahun, EXTRACT(MONTH FROM tanggal_pembayaran) AS bulan, 
+            SUM(nominal) AS total FROM kas
+            GROUP BY EXTRACT(YEAR FROM tanggal_pembayaran), EXTRACT(MONTH FROM tanggal_pembayaran)
+            ORDER BY tahun, bulan;
             SQL
         );
         $sum = $result->fetch_all(MYSQLI_ASSOC);

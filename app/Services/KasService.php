@@ -111,10 +111,11 @@ class KasService
     }
     private function sumMap(array $raw): array
     {
-        $sum = [0,0,0,0,0,0,0,0,0,0,0,0];
+        $sum = [];
         foreach($raw as $item) {
+            if(!isset($sum[$item['tahun']])) $sum[$item['tahun']] = [0,0,0,0,0,0,0,0,0,0,0,0];
             $index = (int)$item['bulan']-1;
-            $sum[$index] = (int)$item['total'];
+            $sum[$item['tahun']][$index] = (int)$item['total'];
         }
         return $sum;
     }
